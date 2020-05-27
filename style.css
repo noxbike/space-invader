@@ -1,0 +1,18 @@
+body{
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#view{
+    background-image: url('space.png');
+    width: 1000px;
+    height: 800px;
+    border: 2px solid black;
+}
+
+#vaisseau-allie{
+    width:120px;
+    margin: 700px auto 0px 400px;
+}
