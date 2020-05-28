@@ -1,8 +1,7 @@
 body{
     height:100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-right: auto;
+    padding-left: 25%;
 }
 
 #view{
@@ -12,9 +11,29 @@ body{
     border: 2px solid black;
 }
 
-#vaisseau-allie{
-    position: relative;
+#hero{
+    background-image: url('hero2.png');
+    background-size:cover;
     top: 700px;
-    left: 420px;
-    width:120px;
+    left: 1000px;
+    position: absolute;
+    height:70px;
+    width: 90px;
+
+}
+
+.missile{
+    background-image: url('missile.png');
+    background-size: cover;
+    height:51.25px;
+    width: 20px;
+    position:  absolute;
+    top: 700;
+    left:1000;
+}
+
+#missile{
+    width: 1000px;
+    height: 800px;
+    position: absolute;
 }
