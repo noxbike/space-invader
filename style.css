@@ -6,6 +6,7 @@ body{
 
 #view{
     background-image: url('space.png');
+    background-size: cover;
     width: 1200px;
     height: 800px;
     border: 2px solid black;
@@ -56,16 +57,27 @@ body{
     display:flex;
     flex-direction: column;
     font-family: sans-serif;
-    justify-content: center;
     align-items: center;
     color:white;
     width: 1200px;
     height: 800px;
 }
 
-#play:hover{
-    color: red;
-    font-size:1.5em;
+#menu img{
+    width:70%;
+}
+
+#play, #credit{
+    background-image: url('texture_button.jpg');
+    width: 20%;
+    text-align: center;
+    border-radius: 6px;
+    margin-bottom: 3%;
+}
+
+#play:hover, #credit:hover{
+    border: 1px solid white;
+    width: 20%;
 }
 
 .pause{
