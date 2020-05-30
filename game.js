@@ -13,6 +13,7 @@ $(function(){
     var missiles = [];
     var ennemys = [];
     var t;
+    var pause = false;
 
     $(document).keydown(function(e){
        
@@ -42,8 +43,23 @@ $(function(){
         }
 
         if(e.which == 27){
-            console.log('pause');
             menu();
+        }
+
+        
+        if(e.which == 13){
+            console.log('pause');
+            pause = !pause;
+            var txtpause = $('<h1></h1>').text('Pause');
+            txtpause.attr('class', 'pause');
+            if(pause){
+                txtpause.appendTo('#view'); 
+                clearTimeout(t);
+            }
+            else{
+                $('.pause').html('');
+                gameLoop();
+            }
         }
         
     })
@@ -141,7 +157,6 @@ $(function(){
                 //si le missile est a la hauteur de l'ennemi et inferieur a la position de l'aile droite et superieur a l'aile gauche, le missile et l'ennemie disparait
                 //ensuite faire reaparaitre un nouvel ennemie
                 if(missiles[missile].top <= topennemy && missiles[missile].left >= ennemys[ennemy].left && missiles[missile].left <= right){
-                    console.log('hit');
                     ennemys.splice(ennemy,1);
                     missiles.splice(missile,1);
                     appearEnnemy();
