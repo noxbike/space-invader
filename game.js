@@ -12,6 +12,7 @@ $(function(){
 
     var missiles = [];
     var ennemys = [];
+    var t;
 
     $(document).keydown(function(e){
        
@@ -39,8 +40,23 @@ $(function(){
             })
             drawMissiles();
         }
+
+        if(e.which == 27){
+            console.log('pause');
+            menu();
+        }
         
     })
+
+    function menu(){
+        clearTimeout(t);
+        $('#missile').hide();
+        missiles = [];
+        $('#ennemy').hide();
+        ennemys = [];
+        $('#hero').hide();
+        $('#menu').show();
+    }
 
     function moveHero() {
           $('#hero').css('left', hero.left);
@@ -148,15 +164,23 @@ $(function(){
     }
     appearEnnemy();
 
+    $('#play').click(function(){
+        $('#menu').hide();
+        $('#missile').show();
+        $('#ennemy').show();
+        $('#hero').show();
+        appearEnnemy();
+        gameLoop();
+    })
+    
     function gameLoop(){
-        setTimeout(gameLoop , 25)
+        t = setTimeout(gameLoop , 25)
         esquiveEnnemy();
         moveEnnemy();
         drawEnnemy();
         moveMissile();
         drawMissiles();
         ennemyDie();
-    }
-    gameLoop();
+    };
 
 })
