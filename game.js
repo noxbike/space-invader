@@ -11,6 +11,8 @@ $(function(){
     };
 
     var missiles = [];
+    var missileEnnemy = [];
+
     var ennemys = [];
     var t;
     var pause = false;
@@ -97,6 +99,20 @@ $(function(){
             }
         }
     }
+    function moveMissileEnnemy(){
+        for( var missile = 0; missile < missileEnnemy.length; missile++){
+            //si le missile est tiré, le dirigé vers le haut
+            if(missileEnnemy[missile].top < 700)
+            {
+                missileEnnemy[missile].top = missileEnnemy[missile].top + 5;
+            }
+            else
+            {
+                //missile supprimé une fois atteint le haut de l'écran
+                missileEnnemy.splice(missile,1);
+            }
+        }
+    }
 
     function moveMissile(){
         for( var missile = 0; missile < missiles.length; missile++){
@@ -127,7 +143,9 @@ $(function(){
         for( var missile = 0; missile < missiles.length; missile++){
             $('<div/>', {class: 'missile', style: `top:${missiles[missile].top}px; left:${missiles[missile].left}px;` }).appendTo('#missile');
         }
-        
+        for( var missile = 0; missile < missileEnnemy.length; missile++){
+            $('<div/>', {class: 'missileEnnemy', style: `top:${missileEnnemy[missile].top}px; left:${missileEnnemy[missile].left}px;` }).appendTo('#missile');
+        }
     }
 
     //esquive de l'ennemie
@@ -140,9 +158,11 @@ $(function(){
 
                 if(missiles[missile].top <= cat  && missiles[missile].left >= middle && missiles[missile].left <= right){
                     ennemys[ennemy].left = ennemys[ennemy].left - 3;
+                    attackEnnemy();
                 }
                 else if(missiles[missile].top <= cat  && missiles[missile].left >= ennemys[ennemy].left && missiles[missile].left < middle){
                     ennemys[ennemy].left = ennemys[ennemy].left + 3;
+                    attackEnnemy();
                 }
             }
         }   
@@ -165,6 +185,25 @@ $(function(){
         }
     }
 
+    function attackEnnemy(){
+        for(var ennemy = 0; ennemy < ennemys.length; ennemy++){
+            var right = ennemys[ennemy].left +333;
+            var left = ennemys[ennemy].left +383;
+            var rightHero = hero.left +90;
+
+            if(hero.left <= left && rightHero >= right){
+               console.log('detection');
+                if(missileEnnemy.length < 2){
+                    missileEnnemy.push({
+                        left: ennemys[ennemy].left +35,
+                        top: ennemys[ennemy].top
+                    })
+                    drawMissiles();
+                }
+            }
+        }
+    }
+
     //apparition de l'ennemie aléatoirement entre 100px et 1000px 
     function appearEnnemy(){
         var min=100; 
@@ -176,6 +215,7 @@ $(function(){
                 top: ennemy.top
             })
         }
+        attackEnnemy();
     }
     appearEnnemy();
 
@@ -190,6 +230,8 @@ $(function(){
     
     function gameLoop(){
         t = setTimeout(gameLoop , 25)
+        attackEnnemy();
+        moveMissileEnnemy();
         esquiveEnnemy();
         moveEnnemy();
         drawEnnemy();

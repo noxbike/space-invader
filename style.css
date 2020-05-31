@@ -39,6 +39,16 @@ body{
     position: absolute;
 }
 
+.missileEnnemy{
+    background-image: url('missileEnnemy.png');
+    background-size: cover;
+    height:51.25px;
+    width: 20px;
+    position: absolute;
+    top: 15;
+    left:1000;
+}
+
 #ennemy{
     width: 1200px;
     height: 800px;
