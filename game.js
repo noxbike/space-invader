@@ -158,14 +158,12 @@ $(function(){
 
                 if(missiles[missile].top <= cat  && missiles[missile].left >= middle && missiles[missile].left <= right){
                     ennemys[ennemy].left = ennemys[ennemy].left - 3;
-                    attackEnnemy();
                 }
                 else if(missiles[missile].top <= cat  && missiles[missile].left >= ennemys[ennemy].left && missiles[missile].left < middle){
                     ennemys[ennemy].left = ennemys[ennemy].left + 3;
-                    attackEnnemy();
                 }
             }
-        }   
+        }     
     }
 
     function ennemyDie(){
