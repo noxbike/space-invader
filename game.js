@@ -2,14 +2,15 @@ $(function(){
 
     var hero = {
         top:700,
-        left: 1000
+        left: 600,
+        margin: 0,
     };
 
     var ennemy = {
         top: 15,
-        left: 1000
+        left: 600,
+        margin: 0,
     };
-
     var missiles = [];
     var missileEnnemy = [];
 
@@ -18,18 +19,20 @@ $(function(){
     var pause = false;
 
     $(document).keydown(function(e){
+        let view = $('#view').css('margin-left');
+        view = parseInt(view)
        
         //deplacement vers la droite
-        if(e.which === 39){
-            if(hero.left <= 1380){
+        if(e.which === 39 || e.which === 68){
+            if(hero.left < (view + 1098)){
                 hero.left = hero.left + 20;
                 moveHero(); 
             }
         }
 
         //deplacement vers la gauche
-        if(e.which === 37){
-            if(hero.left >= 500 ){
+        if(e.which === 37 || e.which === 81){
+            if(hero.left > view + 40){
                 hero.left = hero.left - 20;
                 moveHero(); 
             }
@@ -38,7 +41,7 @@ $(function(){
         //tir de missile
         if(e.which == 32){
             missiles.push({
-                left: hero.left - 355,
+                left: hero.left -120,
                 top: hero.top
             })
             drawMissiles();
@@ -74,6 +77,7 @@ $(function(){
         ennemys = [];
         $('#hero').hide();
         $('#menu').show();
+        $('#stars').hide();
     }
 
     function moveHero() {
@@ -99,6 +103,7 @@ $(function(){
             }
         }
     }
+
     function moveMissileEnnemy(){
         for( var missile = 0; missile < missileEnnemy.length; missile++){
             //si le missile est tiré, le dirigé vers le haut
@@ -222,9 +227,11 @@ $(function(){
         $('#missile').show();
         $('#ennemy').show();
         $('#hero').show();
+        $('#stars').show();
         appearEnnemy();
         gameLoop();
     })
+
     
     function gameLoop(){
         t = setTimeout(gameLoop , 25)
