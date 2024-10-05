@@ -17,6 +17,19 @@ $(function(){
     var ennemys = [];
     var t;
     var pause = false;
+    var action = {"right": false, "left": false}
+
+    $(document).keyup(function(e) {
+         //deplacement vers la droite
+         if(e.which === 39 || e.which === 68){
+            action.right = false;
+        }
+
+        //deplacement vers la gauche
+        if(e.which === 37 || e.which === 81){
+            action.left = false;
+        };
+    })
 
     $(document).keydown(function(e){
         let view = $('#view').css('margin-left');
@@ -25,16 +38,16 @@ $(function(){
         //deplacement vers la droite
         if(e.which === 39 || e.which === 68){
             if(hero.left < (view + 1098)){
-                hero.left = hero.left + 20;
-                moveHero(); 
+               action.left = false;
+               action.right = true;
             }
         }
 
         //deplacement vers la gauche
         if(e.which === 37 || e.which === 81){
             if(hero.left > view + 40){
-                hero.left = hero.left - 20;
-                moveHero(); 
+                action.right = false;
+                action.left = true;
             }
         };
        
@@ -81,7 +94,18 @@ $(function(){
     }
 
     function moveHero() {
-          $('#hero').css('left', hero.left);
+        console.log(hero.left)
+        if(action.left === true  ) {
+            if(hero.left > 40){
+                hero.left = hero.left - 20;
+            }
+        }
+        if(action.right === true ) {
+            if(hero.left < 1080){
+                hero.left = hero.left + 20;
+            }
+        }
+        $('#hero').css('left', hero.left);
     }
 
     function moveEnnemy(){
@@ -195,7 +219,6 @@ $(function(){
             var rightHero = hero.left +90;
 
             if(hero.left <= left && rightHero >= right){
-               console.log('detection');
                 if(missileEnnemy.length < 2){
                     missileEnnemy.push({
                         left: ennemys[ennemy].left +35,
@@ -235,6 +258,7 @@ $(function(){
     
     function gameLoop(){
         t = setTimeout(gameLoop , 25)
+        moveHero();
         attackEnnemy();
         moveMissileEnnemy();
         esquiveEnnemy();
