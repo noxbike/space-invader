@@ -1,3 +1,4 @@
+var loopStars = null;
 $(function() {
     
     var stars = {
@@ -40,12 +41,9 @@ $(function() {
         }
    }
 
-   function gameLoop() {
-    t = setTimeout(gameLoop, 50);
+   loopStars = () => {
         drawStars();
         appearsStars();
         moveStars();
    }
-
-   gameLoop();
 })

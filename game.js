@@ -1,63 +1,34 @@
 $(function(){
 
-    var hero = {
-        top:700,
-        left: 600,
-        margin: 0,
-    };
-
     var ennemy = {
         top: 15,
         left: 600,
         margin: 0,
     };
+
     var missiles = [];
     var missileEnnemy = [];
 
     var ennemys = [];
     var t;
     var pause = false;
-    var action = {"right": false, "left": false}
+    
 
-    $(document).keyup(function(e) {
-         //deplacement vers la droite
-         if(e.which === 39 || e.which === 68){
-            action.right = false;
-        }
-
-        //deplacement vers la gauche
-        if(e.which === 37 || e.which === 81){
-            action.left = false;
-        };
-    })
+   
 
     $(document).keydown(function(e){
         let view = $('#view').css('margin-left');
         view = parseInt(view)
        
-        //deplacement vers la droite
-        if(e.which === 39 || e.which === 68){
-            if(hero.left < (view + 1098)){
-               action.left = false;
-               action.right = true;
-            }
-        }
-
-        //deplacement vers la gauche
-        if(e.which === 37 || e.which === 81){
-            if(hero.left > view + 40){
-                action.right = false;
-                action.left = true;
-            }
-        };
-       
         //tir de missile
         if(e.which == 32){
-            missiles.push({
-                left: hero.left -120,
-                top: hero.top
-            })
-            drawMissiles();
+            if(!pause){
+                missiles.push({
+                    left: hero.left - 128,
+                    top: hero.top,
+                })
+                drawMissiles();
+            }
         }
 
         if(e.which == 27){
@@ -91,21 +62,6 @@ $(function(){
         $('#hero').hide();
         $('#menu').show();
         $('#stars').hide();
-    }
-
-    function moveHero() {
-        console.log(hero.left)
-        if(action.left === true  ) {
-            if(hero.left > 40){
-                hero.left = hero.left - 20;
-            }
-        }
-        if(action.right === true ) {
-            if(hero.left < 1080){
-                hero.left = hero.left + 20;
-            }
-        }
-        $('#hero').css('left', hero.left);
     }
 
     function moveEnnemy(){
@@ -258,7 +214,9 @@ $(function(){
     
     function gameLoop(){
         t = setTimeout(gameLoop , 25)
-        moveHero();
+        view = parseInt( $('#view').css('margin-left'))
+        loopHero();
+        loopStars();
         attackEnnemy();
         moveMissileEnnemy();
         esquiveEnnemy();
