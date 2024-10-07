@@ -1,7 +1,7 @@
 Pour pouvoir démarrer le jeu :
 
 - Télécharger le dossier en le mettant sur votre bureau
-- Ensuite double clique sur space-invader.html
+- Ensuite double clique sur index.html
 
 -----------------------------------------
 Remarque : 

@@ -1,6 +1,6 @@
 body{
     background-color: rgb(30, 30, 30);
-    background-image: url("galaxy.jpg");
+    background-image: url("assets/galaxy.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -13,7 +13,7 @@ body{
 }
 
 #hero{
-    background-image: url('hero2.png');
+    background-image: url('assets/hero2.png');
     background-size:cover;
     top: 700px;
     margin: auto;
@@ -24,13 +24,6 @@ body{
 }
 
 .missile{
-    /*background-image: url('missile.png');
-    background-size: cover;
-    height:51.25px;
-    width: 20px;
-    position:  absolute;
-    top: 700;
-    left:1000;*/
     height: 20px;
     width: 4px;
     background-color: rgb(0, 106, 255);
@@ -49,10 +42,6 @@ body{
 }
 
 .missileEnnemy{
-    /*background-image: url('missileEnnemy.png');
-    background-size: cover;
-    height:51.25px;
-    width: 20px;*/
     position: absolute;
     top: 15;
     left:1000;
@@ -71,7 +60,7 @@ body{
 }
 
 .ennemy{
-    background-image: url('vaiseau-ennemie.png');
+    background-image: url('assets/vaiseau-ennemie.png');
     background-size:cover;
     position: absolute;
     height:50px;
@@ -107,7 +96,7 @@ body{
 }
 
 #play, #credit{
-    background-image: url('texture_button.jpg');
+    background-image: url('assets/texture_button.jpg');
     width: 20%;
     text-align: center;
     border-radius: 6px;

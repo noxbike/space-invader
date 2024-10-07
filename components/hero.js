@@ -24,29 +24,24 @@ $(function() {
 
    //move right or left depending on keyboard direction
    $(document).keydown(function(e) {
-        if(hero.left < 1201) {
-            if(e.which === 39 || e.which === 68){
-                action.left = false;
-                action.right = true;
-            }
+       if(e.which === 39 || e.which === 68){
+                if(action.left == true) action.left = false;
+                if(action.right == false) action.right = true;
         }
-        if(hero.left > -1 ){
-            if(e.which === 37 || e.which === 81){
-                    action.right = false;
-                    action.left = true;
-            };
+        if(e.which === 37 || e.which === 81){
+                if(action.right == true) action.right = false;
+                if(action.left == false) action.left = true;
         }
    })
 
    // include position of hero in html element
    loopHero = () => {
-        if(action.left === true  ) {
-            hero.left = hero.left - 20;
+        if(action.left === true && hero.left > -1  ) {
+            hero.left = hero.left - 10;
         }
-        if(action.right === true ) {
-            hero.left = hero.left + 20;
-        }
+        if(action.right === true && hero.left < 1201) {
+            hero.left = hero.left + 10;
+        } 
         $('#hero').css('left', view + hero.left);
     }
-
 })

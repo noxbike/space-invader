@@ -12,7 +12,7 @@ $(function() {
             if(arrayStars.length < 20){
                 arrayStars.push({"size": speed + 2, "speed": arraySpeed[speed], "left": left, "top": 1})
             }
-            setTimeout(drawStars,200);
+            setTimeout(drawStars,400);
     }
     drawStars();
 
