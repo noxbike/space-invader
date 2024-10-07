@@ -1,3 +1,4 @@
+let view = 0;
 $(function(){
 
     var ennemy = {
@@ -17,19 +18,18 @@ $(function(){
    
 
     $(document).keydown(function(e){
-        let view = $('#view').css('margin-left');
-        view = parseInt(view)
-       
-        //tir de missile
-        if(e.which == 32){
-            if(!pause){
-                missiles.push({
-                    left: hero.left - 128,
-                    top: hero.top,
-                })
-                drawMissiles();
-            }
-        }
+       if(hero.left > -1 && hero.left < 1201){
+           //tir de missile
+           if(e.which == 32){
+               if(!pause){
+                   missiles.push({
+                       left: hero.left - 128,
+                       top: hero.top,
+                   })
+                   drawMissiles();
+               }
+           }
+       }
 
         if(e.which == 27){
             menu();
@@ -213,7 +213,7 @@ $(function(){
 
     
     function gameLoop(){
-        t = setTimeout(gameLoop , 25)
+        t = requestAnimationFrame(gameLoop);
         view = parseInt( $('#view').css('margin-left'))
         loopHero();
         loopStars();

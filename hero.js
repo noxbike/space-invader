@@ -7,9 +7,8 @@ var hero = {
 var loopHero = null;
 
 $(function() {
-    var t;
+    $('#hero').css('left', view + hero.left);
     var action = {"right": false, "left": false}
-    let view = 0;
 
     // stop moving to right or left depending on keyup
     $(document).keyup(function(e) {
@@ -25,34 +24,29 @@ $(function() {
 
    //move right or left depending on keyboard direction
    $(document).keydown(function(e) {
-        if(e.which === 39 || e.which === 68){
-            if(hero.left < (view + 1098)){
-            action.left = false;
-            action.right = true;
+        if(hero.left < 1201) {
+            if(e.which === 39 || e.which === 68){
+                action.left = false;
+                action.right = true;
             }
         }
-
-        if(e.which === 37 || e.which === 81){
-            if(hero.left > view){
-                action.right = false;
-                action.left = true;
-            }
-        };
+        if(hero.left > -1 ){
+            if(e.which === 37 || e.which === 81){
+                    action.right = false;
+                    action.left = true;
+            };
+        }
    })
 
    // include position of hero in html element
    loopHero = () => {
         if(action.left === true  ) {
-            if(hero.left > 40){
-                hero.left = hero.left - 20;
-            }
+            hero.left = hero.left - 20;
         }
         if(action.right === true ) {
-            if(hero.left < 1080){
-                hero.left = hero.left + 20;
-            }
+            hero.left = hero.left + 20;
         }
-        $('#hero').css('left', hero.left);
+        $('#hero').css('left', view + hero.left);
     }
 
 })
