@@ -66,9 +66,8 @@ $(function() {
             var right = ennemys[ennemy].left +333;
             var left = ennemys[ennemy].left +383;
             var rightHero = hero.left +90;
-
             if(hero.left <= left && rightHero >= right){
-                if(missileEnnemy.length < 5){
+                if(missileEnnemy.length < 1){
                     missileEnnemy.push({
                         left: ennemys[ennemy].left +35,
                         top: ennemys[ennemy].top
@@ -88,6 +87,8 @@ $(function() {
                 if (missiles[missile].top <= topennemy && missiles[missile].left >= ennemys[ennemy].left && missiles[missile].left <= right){
                     ennemys.splice(ennemy,1);
                     missiles.splice(missile,1);
+                    score += 1;
+                    updateScore();
                 }
             }
         }

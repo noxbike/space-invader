@@ -8,7 +8,18 @@ $(function() {
             //move missile to the bottom
             if (missileEnnemy[ missile ].top < 700) {
                 missileEnnemy[ missile ].top = missileEnnemy[ missile ].top + 5;
-            } else {
+            } 
+            else if (missileEnnemy[missile].top > 699 && missileEnnemy[missile].top < 751) {
+                if(missileEnnemy[ missile ].left > hero.left - 35 && missileEnnemy[ missile ].left < hero.left + 45) {
+                    missileEnnemy.splice(missile, 1);
+                    life.pop();
+                    updatelife();
+                    return true;
+                }
+                missileEnnemy[ missile ].top = missileEnnemy[ missile ].top + 5;
+            }
+            
+            else {
                 //delete missile when it's out of screen
                 missileEnnemy.splice(missile,1);
             }

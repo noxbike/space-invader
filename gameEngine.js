@@ -1,6 +1,6 @@
 let view = 0;
 var pause = false;
-
+var gameOver = null;
 $(function() { 
     var t;
 
@@ -37,12 +37,31 @@ $(function() {
 
     $('#play').click(function(){
         gameLoop();
+        chronometer();
+        updatelife();
         $('#menu').hide();
         $('#missile').show();
         $('#ennemy').show();
         $('#hero').show();
         $('#stars').show();
     })
+
+    gameOver = () => {
+        $('.endTime').html(`${minute < 10 ? 0 : ''}${minute} : ${second < 10 ? 0 : ''}${second}`)
+        $('.endScore').html(`${score}`)
+        minute = 0;
+        second = 0;
+        life = [1, 2, 3, 4]
+        score = 0
+        clearTimeout(chronometerTime)
+        cancelAnimationFrame(t)
+        missiles = [];
+        ennemys = [];
+        $('#missile').hide();
+        $('#ennemy').hide();
+        $('#hero').hide();
+        $('#stars').hide();
+    }
 
     gameLoop = () =>{
         if(!pause){

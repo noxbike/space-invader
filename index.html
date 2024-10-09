@@ -20,6 +20,22 @@
             <div id='missile' hidden></div>
             <div id='hero' hidden></div>
             <div id='ennemy' hidden></div>
+            <div id="dashboard" style="display:none;">
+                <div id="life">
+                    <div class="point""></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                </div>
+                <div id="time"></div>
+                <div id="score">Score: <span id="kill">0</span></div>
+            </div>
+            <div id="gameOver" style="display:none;">
+                <h1>GAME OVER</h1>
+                <p>Your time: <span class="endTime">00:00</span></p>
+                <p>Your score: <span class="endScore">0</span></p>
+                <button id="restart" type="button">Restart</button>
+            </div>
         </div>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
         <script src='gameEngine.js'></script>
@@ -27,5 +43,6 @@
         <script src='components/hero.js'></script>
         <script src='components/ennemy.js'></script>
         <script src='components/missile.js'></script>
+        <script src='components/dashboard.js'></script>
     </body>
 </html>

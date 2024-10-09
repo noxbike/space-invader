@@ -41,6 +41,7 @@ $(function() {
             }
     })
 
+
     // include position of hero in html element
     loopHero = () => {
         if (action.left === true && hero.left > -1  ) {
