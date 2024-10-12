@@ -15,7 +15,7 @@ $(function() {
         } else {
             second += 1
         }
-        $("#time").html(`${minute < 10 ? 0 : ''}${minute} : ${second < 10 ? 0 : ''}${second}`);
+        $("#time").html(`${minute < 10 ? 0 : ''}${minute}:${second < 10 ? 0 : ''}${second}`);
         $('#dashboard').css('display', 'flex');
     }
     

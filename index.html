@@ -31,10 +31,13 @@
                 <div id="score">Score: <span id="kill">0</span></div>
             </div>
             <div id="gameOver" style="display:none;">
-                <h1>GAME OVER</h1>
-                <p>Your time: <span class="endTime">00:00</span></p>
-                <p>Your score: <span class="endScore">0</span></p>
-                <button id="restart" type="button">Restart</button>
+                <div class="containerGameOver">
+                    <h1>GAME OVER</h1>
+                    <p>Time: <span class="endTime">00:00</span></p>
+                    <p>Score: <span class="endScore">0</span></p>
+                    <button id="restart" type="button">Restart</button>
+                    <button id="back" type="button">Menu</button>
+                </div>
             </div>
         </div>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>

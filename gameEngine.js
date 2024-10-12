@@ -47,7 +47,7 @@ $(function() {
     })
 
     gameOver = () => {
-        $('.endTime').html(`${minute < 10 ? 0 : ''}${minute} : ${second < 10 ? 0 : ''}${second}`)
+        $('.endTime').html(`${minute < 10 ? 0 : ''}${minute}:${second < 10 ? 0 : ''}${second}`)
         $('.endScore').html(`${score}`)
         minute = 0;
         second = 0;
