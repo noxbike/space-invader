@@ -4,6 +4,23 @@ var gameOver = null;
 $(function() { 
     var t;
 
+    $("#restart").on("click", function(){
+        gameLoop();
+        chronometer();
+        updatelife();
+        $('#gameOver').css("display", "none");
+        $('#missile').show();
+        $('#ennemy').show();
+        $('#hero').show();
+        $('#stars').show();
+    })
+
+    $("#back").on("click", function(){
+        $('#gameOver').css("display", "none");
+        $("#menu").show();
+        $("#dashboard").hide();
+    })
+
     $(document).keydown(function(e) {
 
         if (e.which == 27) {

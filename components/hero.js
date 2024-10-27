@@ -30,7 +30,7 @@ $(function() {
                     if(action.right == true) action.right = false;
                     if(action.left == false) action.left = true;
             }
-            if (hero.left > -1 && hero.left < 1201) {
+            if (hero.left > 10 && hero.left < 1125) {
                 //shoot missile
                 if(e.which == 32 && !pause){
                     missiles.push({
@@ -44,10 +44,10 @@ $(function() {
 
     // include position of hero in html element
     loopHero = () => {
-        if (action.left === true && hero.left > -1  ) {
+        if (action.left === true && hero.left > 10  ) {
             hero.left = hero.left - 10;
         }
-        if (action.right === true && hero.left < 1201) {
+        if (action.right === true && hero.left < 1125) {
             hero.left = hero.left + 10;
         } 
         $('#hero').css('left', view + hero.left);
