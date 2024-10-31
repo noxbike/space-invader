@@ -21,7 +21,7 @@ $(function() {
         var min=100; 
         var max=900;
         var random = Math.floor(Math.random() * (+max - +min)) + +min;
-        if (ennemys.length < 3) {
+        if (ennemys.length < 5) {
             ennemys.push({
                 left: random,
                 top: ennemy.top
@@ -30,10 +30,10 @@ $(function() {
     }
 
     function moveEnnemy(){
-        for( var ennemy = 0; ennemy < ennemys.length; ennemy++){
+        for(let ennemy in ennemys) {
             //tant que l'ennemie n'atteint pas le bas il continue de descendre
             if (ennemys[ennemy].top < 710) {
-                ennemys[ennemy].top = ennemys[ennemy].top + 2;
+                ennemys[ennemy].top += 2;
             }
 
             //une fois l'ennemie atteint le bas de l'écran il disparait et fait apparaitre un nouveau
@@ -67,7 +67,7 @@ $(function() {
             var left = ennemys[ennemy].left +383;
             var rightHero = hero.left +90;
             if(hero.left <= left && rightHero >= right){
-                if(missileEnnemy.length < 1){
+                if(missileEnnemy.length < 5){
                     missileEnnemy.push({
                         left: ennemys[ennemy].left +35,
                         top: ennemys[ennemy].top
@@ -75,7 +75,9 @@ $(function() {
                 }
             }
         }
+        setTimeout(attackEnnemy, 1000);
     }
+    attackEnnemy();
 
     function ennemyDie(){
         for (var missile = 0; missile < missiles.length; missile++){
@@ -99,7 +101,6 @@ $(function() {
         drawEnnemy();
         moveEnnemy();
         esquiveEnnemy();
-        attackEnnemy();
         ennemyDie();
     }
 })
