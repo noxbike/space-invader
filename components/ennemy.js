@@ -8,39 +8,18 @@ var ennemys = [];
 
 $(function() {
 
-    //dessiné l'ennemie
-    function drawEnnemy(){
-        $('#ennemy').html('');
-        for( var ennemy = 0; ennemy < ennemys.length; ennemy++){
-            $('<div/>', {class: 'ennemy', style: `top:${ennemys[ennemy].top}px; left:${ennemys[ennemy].left}px;`}).appendTo('#ennemy')
-        }
-    }
-
     //apparition de l'ennemie aléatoirement entre 100px et 1000px 
-    function appearEnnemy(){
-        var min=100; 
-        var max=900;
-        var random = Math.floor(Math.random() * (+max - +min)) + +min;
+    function drawEnnemy(){
         if (ennemys.length < 5) {
             ennemys.push({
-                left: random,
+                left: leftRandom(),
                 top: ennemy.top
             })
         }
     }
 
-    function moveEnnemy(){
-        for(let ennemy in ennemys) {
-            //tant que l'ennemie n'atteint pas le bas il continue de descendre
-            if (ennemys[ennemy].top < 710) {
-                ennemys[ennemy].top += 2;
-            }
-
-            //une fois l'ennemie atteint le bas de l'écran il disparait et fait apparaitre un nouveau
-            else {
-                ennemys.splice(ennemy,1);
-            }
-        }
+    moveEnnemy = () => {
+        ennemys = move(ennemys, 2)
     }
 
     //esquive de l'ennemie
@@ -97,8 +76,8 @@ $(function() {
     }
 
     loopEnnemy = () => {
-        appearEnnemy();
-        drawEnnemy();
+        appears('ennemy', ennemys);
+        drawEnnemy()
         moveEnnemy();
         esquiveEnnemy();
         ennemyDie();

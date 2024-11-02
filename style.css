@@ -11,24 +11,115 @@ body{
     background-image: url("assets/galaxy.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 1200px;
-    height: 800px;
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: 3 / 2;
     margin: auto;
+}
+
+@media screen and (max-width:767px){
+    #hero{
+        max-height:30px;
+        max-width: 40px;
+    }
+    .ennemy{
+        max-height: 30px;
+        max-width: 40px;
+    }
+
+    .missile{
+        width: 2px;
+        height: 15px;
+    }
+
+    .missileEnnemy{
+        width: 2px;
+        height: 15px;
+    }
+
+    #dashboard{
+        font-size: 15px;
+    }
+    #life{
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+        align-items: center;
+    }
+    
+    .point{
+        width  : 20px;
+        height : 0;
+        border-top  : 25px solid green;
+        border-left : 10px solid transparent;
+        position : relative;
+        margin: 0 5px;
+    }
+    .point:after {
+        width  : 0;
+        height : 0;
+        content: '';
+        filter: drop-shadow(0px 0px 20px green);
+        border-bottom : 25px solid green;
+        border-right  : 10px solid transparent;
+        border-left   : 10px solid transparent;
+        position : absolute;
+        top  : -25px;
+        right: -10px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #hero{
+        max-width: 60px;
+        max-height: 40px;
+    }
+    .missileEnnemy, .missile{
+        height: 20px;
+        width: 4px;
+    }
+    #dashboard{
+        font-size: 25px;
+    }
+    #life{
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+        align-items: center;
+    }
+    
+    .point{
+        width  : 20px;
+        height : 0;
+        border-top  : 50px solid green;
+        border-left : 20px solid transparent;
+        position : relative;
+        margin: 0 5px;
+    }
+    .point:after {
+        width  : 0;
+        height : 0;
+        content: '';
+        filter: drop-shadow(0px 0px 20px green);
+        border-bottom : 50px solid green;
+        border-right  : 20px solid transparent;
+        border-left   : 20px solid transparent;
+        position : absolute;
+        top  : -50px;
+        right: -20px;
+    }
 }
 
 #hero{
     background-image: url('assets/hero2.png');
     background-size:cover;
-    top: 750px;
     margin: auto;
     position: absolute;
-    height:40px;
-    width: 60px;
+    width: 100%;
+    height: 100%;
 }
 
 .missile{
-    height: 20px;
-    width: 4px;
     background-color: rgb(0, 106, 255);
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
@@ -38,9 +129,10 @@ body{
     box-shadow: 0px 25px 30px 2px rgba(5,188,255,0.72);
 }
 
-#missile{
-    width: 1000px;
-    height: 800px;
+#missile, #missileEnnemy{
+    max-width: 1000px;
+    width: 96%;
+    aspect-ratio: 3 / 2;
     position: absolute;
 }
 
@@ -48,8 +140,6 @@ body{
     position: absolute;
     top: 15;
     left:1000;
-    height: 20px;
-    width: 4px;
     background-color: red;
     -webkit-box-shadow:0px -20px 30px 2px red;
     -moz-box-shadow: 0px -20px 30px 2px red;
@@ -57,8 +147,9 @@ body{
 }
 
 #ennemy{
-    width: 1200px;
-    height: 800px;
+    max-width: 1200px;
+    width: 96%;
+    aspect-ratio: 3 / 2;
     position: absolute;
 }
 
@@ -77,9 +168,10 @@ body{
     box-shadow: 0px 2px 20px white;
 }
 #stars{
-    width: 1200px;
+    max-width: 1200px;
+    width: 96%;
     top: 0;
-    height: 800px;
+    aspect-ratio: 3 / 2;
     position: absolute;
     z-index: 0;
 }
@@ -90,8 +182,9 @@ body{
     font-family: sans-serif;
     align-items: center;
     color:white;
-    width: 1200px;
-    height: 800px;
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: 3 / 2;
 }
 
 #menu img{
@@ -129,7 +222,6 @@ body{
     color: #afafaf;
     text-shadow: 0px 0px 10px #afafaf;
     font-weight: 600;
-    font-size: 25px;
     width: 100%;
     height: 30px;
     position: relative;
@@ -139,33 +231,6 @@ body{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-}
-#life{
-    display: flex;
-    flex-direction: row;
-    width: 200px;
-    align-items: center;
-}
-
-.point{
-    width  : 20px;
-    height : 0;
-    border-top  : 50px solid green;
-    border-left : 20px solid transparent;
-    position : relative;
-    margin: 0 5px;
-}
-.point:after {
-    width  : 0;
-    height : 0;
-    content: '';
-    filter: drop-shadow(0px 0px 20px green);
-    border-bottom : 50px solid green;
-    border-right  : 20px solid transparent;
-    border-left   : 20px solid transparent;
-    position : absolute;
-    top  : -50px;
-    right: -20px;
 }
 
 .red{

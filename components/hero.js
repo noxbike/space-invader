@@ -1,12 +1,16 @@
-var hero = {
-    top:700,
-    left: 600,
-    margin: 0,
-};
 var loopHero = null;
 
+var hero = {
+    top:view.height,
+    left:600,
+    margin: 0,
+};
+
+function autoPosition(positionActual){
+    return (view.size/1200) * positionActual
+}
+
 $(function() {
-    $('#hero').css('left', view + hero.left);
     var action = { "right": false, "left": false }
 
     // stop moving to right or left depending on keyup
@@ -30,26 +34,26 @@ $(function() {
                     if(action.right == true) action.right = false;
                     if(action.left == false) action.left = true;
             }
-            if (hero.left > 10 && hero.left < 1125) {
+            if (hero.left > 1 && hero.left < view.size) {
                 //shoot missile
-                if(e.which == 32 && !pause){
+                if(e.which == 32 && !pauseBool){
                     missiles.push({
-                        left: hero.left+10,
-                        top: hero.top,
+                        left: hero.left,
+                        top: view.height -40,
                     })
                 }
             }
     })
-
 
     // include position of hero in html element
     loopHero = () => {
         if (action.left === true && hero.left > 10  ) {
             hero.left = hero.left - 10;
         }
-        if (action.right === true && hero.left < 1125) {
+        if (action.right === true && hero.left < view.size - 50) {
             hero.left = hero.left + 10;
         } 
-        $('#hero').css('left', view + hero.left);
+        $('#hero').css('left', view.marginLeft + hero.left)
+        $('#hero').css('top', view.height-40);
     }
 })
