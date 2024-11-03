@@ -1,41 +1,46 @@
-var view = {'marginLeft': 0, 'size': 1200, "height": 800};
+var view = {"height": 800};
 var pauseBool = false;
 var gameOver = null;
 $(function() { 
     var t;
 
-    setViewSize = () => {
-        view.marginLeft = parseInt( $('#view').css('margin-left'));
-        view.size = parseInt( $('#view').css('width'));
-        view.height = parseInt( $('#view').css('height'));
-    }
+    addEventListener('resize', () => {
+       setViewSize();
+    })
 
-    gameView = () => {
-        $('#missile').toggle();
-        $('#missileEnnemy').toggle();
-        $('#ennemy').toggle();
-        $('#hero').toggle();
-        $('#stars').toggle();
+    setViewSize = () => {
+        view.height = parseInt( $('#view').css('height'));
+        $('#hero').css('top', view.height-30);
     }
+    setViewSize();
 
     hideGame = () => {
-        clearTimeout(chronometerTime)
         cancelAnimationFrame(t)
         missiles = [];
         ennemys = [];
-        gameView()
+        $("#dashboard").hide();
+        $('#missile').hide();
+        $('#missileEnnemy').hide();
+        $('#ennemy').hide();
+        $('#hero').hide();
+        $('#stars').hide();
     }
 
     showGame = () => {
         gameLoop();
-        gameView();
+        $("#dashboard").show();
+        $('#missile').show();
+        $('#missileEnnemy').show();
+        $('#ennemy').show();
+        $('#hero').show();
+        $('#stars').show();
     }
 
     
 
     $(document).keydown(function(e) {
         if (e.which == 27) { menu(); }
-        if (e.which == 13) { pause();  }  
+        if (e.which == 13) { gamePlay && pause();  }  
     })
 
     $('#play').click(() => play() )
@@ -67,8 +72,9 @@ $(function() {
 
     menu = () => {
         $('#menu').show();
-        $("#dashboard").hide();
         $('#gameOver').css("display", "none");
+        pauseBool = false;
+        $('.pause').hide();
         hideGame();
     }
 
@@ -83,7 +89,6 @@ $(function() {
         if(!pauseBool){
             t = requestAnimationFrame(gameLoop);
         }
-        setViewSize();
         chronometer();
         loopHero();
         loopStars();

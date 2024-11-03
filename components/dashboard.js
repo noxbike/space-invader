@@ -6,7 +6,6 @@ var score = 0;
 var updateScore = null;
 var updatelife = null;
 var chronometer = null;
-var chronometerTime = null;
 $(function() {
     chronometer = () => {
         ms += ms == 60 ? -ms : 1;
@@ -16,21 +15,17 @@ $(function() {
         $("#time").html(`${minute < 10 ? 0 : ''}${minute}:${second < 10 ? 0 : ''}${second}`);
         $('#dashboard').css('display', 'flex');
     }
-    
 
     updateScore = () => {
         $("#kill").html(`${score}`)
     }
     
     updatelife = () => {
-        string = "";
-        for(let i = 0; i < life; i++) {
-            string += `<span class="point ${life.length < 3? "red": "" }"></span>`
-        }
-        $('#life').html(string)
-        if(life < 1){
+        if(life <= 0){
             $('#gameOver').css('display', 'flex');
             gameOver();
         }
+        string = `<span class="point ${life.length < 3? "red": "" }"></span>`;
+        $('#life').html(string.repeat(life));
     }
 })
